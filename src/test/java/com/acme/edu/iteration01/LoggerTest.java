@@ -30,6 +30,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log(-1);
         //endregion
 
+
         //region then
         assertSysoutContains("primitive: ");
         assertSysoutContains("1");
