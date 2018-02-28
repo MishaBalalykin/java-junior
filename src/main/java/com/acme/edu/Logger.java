@@ -26,38 +26,42 @@ public class Logger {
 
     public static void log(int message) {
         //region output
-        System.out.println("primitive: " + message);
+        print(message,"primitive");
         //endregion
     }
 
     public static void log(byte message) {
         //region output
-        System.out.println("primitive: " + message);
+        print(message,"primitive");
         //endregion
     }
 
     public static void log(char message) {
         //region output
-        System.out.println("char: " + message);
+        print(message,"char");
         //endregion
     }
 
     public static void log(String message) {
         //region output
-        System.out.println("string: " + message);
+        print(message,"string");
         //endregion
     }
 
     public static void log(boolean message) {
         //region output
-        System.out.println("primitive: " + message);
+        print(message,"primitive");
         //endregion
     }
 
     public static void log(Object message) {
         //region output
-        System.out.println("reference: " + message);
+        print(message,"reference");
         //endregion
+    }
+
+    private static void print(Object message, String type){
+        System.out.println(type+": " + message);
     }
 
 }
