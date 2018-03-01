@@ -67,7 +67,7 @@ public class Logger {
             fullStr = bbb(buffer+1);
             fullStr += message + "\r\n";
         }
-        lastStr = message;
+        lastStr = message; 
     }
 
     private static String bbb(int buffer){
