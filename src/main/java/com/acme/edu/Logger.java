@@ -8,7 +8,7 @@ gkjfhkgjfhg
  */
 
 
-import com.acme.edu.Controller.Controller;
+//import com.acme.edu.Controller.Controller;
 import com.acme.edu.Controller.Printer.PrimitivePrinter;
 import com.acme.edu.Controller.Printer.Printer;
 
@@ -28,8 +28,9 @@ public class Logger {
 
     public static void log(int message) {
         //region output
-        flushStr();
-        buffer = checkOwerflowSum(message);
+        //flushStr();
+        //buffer = checkOwerflowSum(message);
+        new PrimitivePrinter().print(message);
         //endregion
     }
 
@@ -46,14 +47,15 @@ public class Logger {
     public static void log(byte message) {
         //region output
         //print(message,"primitive");
-        Printer printer = new PrimitivePrinter(message, "primitive");
+        new PrimitivePrinter().print(message);
         //print(message);
         //endregion
     }
 
     public static void log(char message) {
         //region output
-        print(message, "char");
+
+        //print(message, "char");
         //print(message);
         //endregion
     }
@@ -85,7 +87,8 @@ public class Logger {
 
     public static void log(boolean message) {
         //region output
-        print(message, "primitive");
+        //print(message, "primitive");
+        new PrimitivePrinter().print(message);
         //endregion
     }
 

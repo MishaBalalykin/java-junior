@@ -1,3 +1,4 @@
+/*
 package com.acme.edu.Controller;
 
 //import com.acme.edu.Controller.Printer.ObjectPrinter;
@@ -29,7 +30,8 @@ public class Controller {
 
 
 
-        /*if (messege instanceof String){
+        */
+/*if (messege instanceof String){
             printer = new StringPrinter(messege);
         }
         if (messege != null){
@@ -37,11 +39,15 @@ public class Controller {
         }
         else{
             printer = new PrimitivePrinter(messege);
-        }*/
+        }*//*
 
-        /*Printer printer = new Printer(messege);
-        printer.print();*/
+
+        */
+/*Printer printer = new Printer(messege);
+        printer.print();*//*
+
     }
 
 
 }
+*/
