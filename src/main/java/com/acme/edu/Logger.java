@@ -8,6 +8,10 @@ gkjfhkgjfhg
  */
 
 
+import com.acme.edu.Controller.Controller;
+import com.acme.edu.Controller.Printer.PrimitivePrinter;
+import com.acme.edu.Controller.Printer.Printer;
+
 /**
  * Logs messages.
  *
@@ -29,9 +33,9 @@ public class Logger {
         //endregion
     }
 
-    private static int checkOwerflowSum(int message){
+    private static int checkOwerflowSum(int message) {
         int sum = message + buffer;
-        if((sum < message || sum < buffer) && sum != message && sum != buffer){
+        if ((sum < message || sum < buffer) && sum != message && sum != buffer) {
             print(buffer);
         } else {
             return sum;
@@ -41,14 +45,15 @@ public class Logger {
 
     public static void log(byte message) {
         //region output
-        print(message,"primitive");
+        //print(message,"primitive");
+        Printer printer = new PrimitivePrinter(message, "primitive");
         //print(message);
         //endregion
     }
 
     public static void log(char message) {
         //region output
-        print(message,"char");
+        print(message, "char");
         //print(message);
         //endregion
     }
@@ -60,63 +65,62 @@ public class Logger {
         //endregion
     }
 
-    private static void aaa(String message){
-        if(message.equals(lastStr)){
+    private static void aaa(String message) {
+        if (message.equals(lastStr)) {
             buffer++;
         } else {
-            fullStr = bbb(buffer+1);
+            fullStr = bbb(buffer + 1);
             fullStr += message + "\r\n";
         }
-        lastStr = message; 
+        lastStr = message;
     }
 
-    private static String bbb(int buffer){
+    private static String bbb(int buffer) {
         StringBuilder stringBuilder = new StringBuilder();
-        if(buffer > 1){
-           stringBuilder.append("(x").append(buffer).append(")");
+        if (buffer > 1) {
+            stringBuilder.append("(x").append(buffer).append(")");
         }
         return stringBuilder.toString();
     }
 
     public static void log(boolean message) {
         //region output
-        print(message,"primitive");
+        print(message, "primitive");
         //endregion
     }
 
     public static void log(Object message) {
         //region output
-        print(message,"reference");
+        print(message, "reference");
         //print(message);
         //endregion
     }
 
-    public static void log(int[] arr){
+    public static void log(int[] arr) {
         StringBuilder stringBuilder = new StringBuilder("primitives array: {");
         stringBuilder = arrToString(arr, stringBuilder);
         stringBuilder.append("}");
         print(stringBuilder.toString());
     }
 
-    private static StringBuilder arrToString(int[] arr, StringBuilder stringBuilder){
-        for (int item : arr){
-            stringBuilder.append(item+", ");
+    private static StringBuilder arrToString(int[] arr, StringBuilder stringBuilder) {
+        for (int item : arr) {
+            stringBuilder.append(item + ", ");
         }
-        stringBuilder.delete(stringBuilder.length()-2,stringBuilder.length());
-        return  stringBuilder;
+        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
+        return stringBuilder;
     }
 
-    public static void log(int[][] arr){
+    public static void log(int[][] arr) {
         StringBuilder stringBuilder = new StringBuilder("primitives matrix: {\r\n");
-        for (int[] item : arr){
+        for (int[] item : arr) {
             stringBuilder.append("{");
-            stringBuilder = arrToString(item,stringBuilder);
+            stringBuilder = arrToString(item, stringBuilder);
             stringBuilder.append("}\r\n");
         }
         stringBuilder.append("}");
         print(stringBuilder.toString());
     }
-
 
 
     private static void print(Object message, String type) {
@@ -128,11 +132,11 @@ public class Logger {
     }
 
     public static void flushInt() {
-        print(buffer,"primitive");
+        print(buffer, "primitive");
         buffer = 0;
     }
 
-    public static void flushStr(){
+    public static void flushStr() {
         print(fullStr);
         fullStr = "";
         lastStr = "";
