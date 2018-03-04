@@ -5,6 +5,5 @@ package com.acme.edu.printer;
  * класс Printer отвечает за возможность изменения места вывода с помощью полиморфизма
  */
 public interface Printer {
-
     void print(String message);
 }
