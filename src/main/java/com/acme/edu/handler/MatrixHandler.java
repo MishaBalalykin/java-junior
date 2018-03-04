@@ -17,7 +17,7 @@ public class MatrixHandler extends Handler {
             stringBuilder.append("}\r\n");
         }
         stringBuilder.append("}");
-        print(stringBuilder.toString());
+        printer.print(stringBuilder.toString());
     }
 
     @Override
@@ -31,9 +31,5 @@ public class MatrixHandler extends Handler {
         }
         stringBuilder.delete(stringBuilder.length()-2,stringBuilder.length());
         return  stringBuilder;
-    }
-
-    private void print(Object message) {
-        System.out.println(message);
     }
 }

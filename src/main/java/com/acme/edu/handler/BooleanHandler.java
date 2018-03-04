@@ -12,14 +12,14 @@ public class BooleanHandler extends Handler {
     @Override
     public void perform(Object message) {
         if (flag){
-            System.out.println(design.getType());
+            flush();
             flag = false;
         }
-        System.out.println(message);
+        printer.print(message.toString());
     }
 
     @Override
     public void flush() {
-
+        System.out.println(design.getType());
     }
 }

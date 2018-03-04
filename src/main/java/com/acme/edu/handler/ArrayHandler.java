@@ -13,7 +13,7 @@ public class ArrayHandler extends Handler {
         StringBuilder stringBuilder = new StringBuilder(design.getType());
         stringBuilder = arrToString((int[])message, stringBuilder);
         stringBuilder.append("}");
-        print(stringBuilder.toString());
+        printer.print(stringBuilder.toString());
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ArrayHandler extends Handler {
         return  stringBuilder;
     }
 
-    private void print(Object message) {
+    /*private void print(Object message) {
         System.out.println(message);
-    }
+    }*/
 }
