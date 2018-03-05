@@ -3,6 +3,7 @@ package com.acme.edu;
 import com.acme.edu.disign.Design;
 import com.acme.edu.handler.*;
 import com.acme.edu.printer.ConsolePrinter;
+import com.acme.edu.printer.Printer;
 
 /**
  * Logs messages.
@@ -21,9 +22,14 @@ public class Logger {
     private static Handler arrayHandler = new ArrayHandler(new ConsolePrinter(), new Design("primitives array: {"));
     private static Handler matrixHandler = new MatrixHandler(new ConsolePrinter(), new Design("primitives matrix: {"));
 
+    private static LoggerController loggerController = new LoggerController();
+    private static Printer printer = new ConsolePrinter();
+
     public static void log(int message) {
         //region output
-        integerHandler.perform(message);
+
+        Handler handler = new IntegerHandler(message,printer);
+        loggerController.execute(handler);
         flushStr();
         //endregion
     }
@@ -73,6 +79,10 @@ public class Logger {
 
     public static void flushStr(){
         stringHandler.flush();
+    }
+
+    public static void flush(){
+        loggerController.flush();
     }
 
 }

@@ -3,10 +3,12 @@ package com.acme.edu.handler;
 import com.acme.edu.disign.Design;
 import com.acme.edu.printer.Printer;
 
-public class ObjectHandler extends Handler {
+public class ObjectHandler implements Handler {
+
+
     boolean flag = true;
     public ObjectHandler(Printer printer, Design design) {
-        super(printer, design);
+
     }
 
     @Override

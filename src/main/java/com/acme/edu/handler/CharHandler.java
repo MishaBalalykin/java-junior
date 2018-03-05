@@ -3,10 +3,10 @@ package com.acme.edu.handler;
 import com.acme.edu.disign.Design;
 import com.acme.edu.printer.Printer;
 
-public class CharHandler extends Handler {
+public class CharHandler implements Handler {
     boolean flag = true;
     public CharHandler(Printer printer, Design design) {
-        super(printer, design);
+
     }
 
     @Override

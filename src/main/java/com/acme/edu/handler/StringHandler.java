@@ -3,29 +3,30 @@ package com.acme.edu.handler;
 import com.acme.edu.disign.Design;
 import com.acme.edu.printer.Printer;
 
-public class StringHandler extends Handler {
+public class StringHandler implements Handler {
+    private String stringMessage;
     private String lastStr = "";
     private String fullStr = "";
     private int buffer;
 
-    public StringHandler(Printer printer, Design design) {
-        super(printer, design);
+    public StringHandler(String message) {
+        stringMessage = message;
     }
 
 
     @Override
-    public void perform(Object message) {
-        buildStr((String) message);
+    public void perform() {
+        buildStr(stringMessage);
     }
 
-    private void buildStr(String message){
-        if(message.equals(lastStr)){
+    private void buildStr(String stringMessage){
+        if(stringMessage.equals(lastStr)){
             buffer++;
         } else {
             indexingStr();
-            fullStr += message + "\n";
+            fullStr += stringMessage + "\n";
         }
-        lastStr = message;
+        lastStr = stringMessage;
     }
 
     private void indexingStr(){

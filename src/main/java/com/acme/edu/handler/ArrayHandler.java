@@ -3,9 +3,9 @@ package com.acme.edu.handler;
 import com.acme.edu.disign.Design;
 import com.acme.edu.printer.Printer;
 
-public class ArrayHandler extends Handler {
+public class ArrayHandler implements Handler {
     public ArrayHandler(Printer printer, Design design) {
-        super(printer, design);
+
     }
 
     @Override

@@ -8,15 +8,8 @@ import com.acme.edu.printer.Printer;
  * @author MishaAndEugen
  * класс Рandler отвечает за добавление новых типов с помощью полиморфизма
  */
-public abstract class Handler {
-    protected Printer printer;
-    protected Design design;
+public interface Handler {
 
-    public Handler(Printer printer, Design design) {
-        this.printer = printer;
-        this.design = design;
-    }
-
-    public abstract void perform(Object message);
-    public abstract void flush();
+    void perform();
+    void flush();
 }

@@ -3,11 +3,11 @@ package com.acme.edu.handler;
 import com.acme.edu.disign.Design;
 import com.acme.edu.printer.Printer;
 
-public class ByteHandler extends Handler {
+public class ByteHandler implements Handler {
     private byte buffer;
 
     public ByteHandler(Printer printer, Design design) {
-        super(printer, design);
+
     }
 
     private void summer(byte message) {

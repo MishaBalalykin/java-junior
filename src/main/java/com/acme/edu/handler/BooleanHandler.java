@@ -3,10 +3,10 @@ package com.acme.edu.handler;
 import com.acme.edu.disign.Design;
 import com.acme.edu.printer.Printer;
 
-public class BooleanHandler extends Handler {
+public class BooleanHandler implements Handler {
     boolean flag = true;
     public BooleanHandler(Printer printer, Design design) {
-        super(printer, design);
+
     }
 
     @Override

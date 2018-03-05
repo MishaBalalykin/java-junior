@@ -3,9 +3,11 @@ package com.acme.edu.handler;
 import com.acme.edu.disign.Design;
 import com.acme.edu.printer.Printer;
 
-public class MatrixHandler extends Handler {
+public class MatrixHandler implements Handler {
+
+
     public MatrixHandler(Printer printer, Design design) {
-        super(printer, design);
+
     }
 
     @Override
