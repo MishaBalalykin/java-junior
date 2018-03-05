@@ -1,16 +1,8 @@
 package com.acme.edu;
 
-//kdjghdfkgjhdfkgjhdfkgj
-/*
-gkjfhkgjfhg
-лоралопралопр
-лпораплорапл
- */
-
-
-//import com.acme.edu.Controller.Controller;
-import com.acme.edu.Controller.Printer.PrimitivePrinter;
-import com.acme.edu.Controller.Printer.Printer;
+import com.acme.edu.disign.Design;
+import com.acme.edu.handler.*;
+import com.acme.edu.printer.ConsolePrinter;
 
 /**
  * Logs messages.
@@ -20,130 +12,67 @@ import com.acme.edu.Controller.Printer.Printer;
  * @see
  */
 public class Logger {
-
-    public static int buffer = 0;
-
-    private static String fullStr = "";
-    private static String lastStr = "";
+    private static IntegerHandler integerHandler= new IntegerHandler(new ConsolePrinter(), new Design("primitive: "));
+    private static StringHandler stringHandler= new StringHandler(new ConsolePrinter(), new Design("string: "));
+    private static ByteHandler byteHandler = new ByteHandler(new ConsolePrinter(), new Design("primitive: "));
+    private static CharHandler charHandler = new CharHandler(new ConsolePrinter(), new Design("char: "));
+    private static BooleanHandler booleanHandler = new BooleanHandler(new ConsolePrinter(), new Design("primitive: "));
+    private static ObjectHandler objectHandler = new ObjectHandler(new ConsolePrinter(), new Design("reference: "));
+    private static ArrayHandler arrayHandler = new ArrayHandler(new ConsolePrinter(), new Design("primitives array: {"));
+    private static MatrixHandler matrixHandler = new MatrixHandler(new ConsolePrinter(), new Design("primitives matrix: {"));
 
     public static void log(int message) {
         //region output
-        //flushStr();
-        //buffer = checkOwerflowSum(message);
-        new PrimitivePrinter().print(message);
+        integerHandler.perform(message);
+        flushStr();
         //endregion
-    }
-
-    private static int checkOwerflowSum(int message) {
-        int sum = message + buffer;
-        if ((sum < message || sum < buffer) && sum != message && sum != buffer) {
-            print(buffer);
-        } else {
-            return sum;
-        }
-        return Integer.MAX_VALUE;
     }
 
     public static void log(byte message) {
         //region output
-        //print(message,"primitive");
-        new PrimitivePrinter().print(message);
-        //print(message);
+        byteHandler.perform(message);
         //endregion
     }
 
     public static void log(char message) {
         //region output
-
-        //print(message, "char");
-        //print(message);
+        charHandler.perform(message);
         //endregion
     }
 
     public static void log(String message) {
         //region output
         flushInt();
-        aaa(message);
+        stringHandler.perform(message);
         //endregion
-    }
-
-    private static void aaa(String message) {
-        if (message.equals(lastStr)) {
-            buffer++;
-        } else {
-            fullStr = bbb(buffer + 1);
-            fullStr += message + "\r\n";
-        }
-        lastStr = message;
-    }
-
-    private static String bbb(int buffer) {
-        StringBuilder stringBuilder = new StringBuilder();
-        if (buffer > 1) {
-            stringBuilder.append("(x").append(buffer).append(")");
-        }
-        return stringBuilder.toString();
     }
 
     public static void log(boolean message) {
         //region output
-        //print(message, "primitive");
-        new PrimitivePrinter().print(message);
+        booleanHandler.perform(message);
         //endregion
     }
 
     public static void log(Object message) {
         //region output
-        print(message, "reference");
-        //print(message);
+        objectHandler.perform(message);
         //endregion
     }
 
-    public static void log(int[] arr) {
-        StringBuilder stringBuilder = new StringBuilder("primitives array: {");
-        stringBuilder = arrToString(arr, stringBuilder);
-        stringBuilder.append("}");
-        print(stringBuilder.toString());
+    public static void log(int[] arr){
+        arrayHandler.perform(arr);
     }
 
-    private static StringBuilder arrToString(int[] arr, StringBuilder stringBuilder) {
-        for (int item : arr) {
-            stringBuilder.append(item + ", ");
-        }
-        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
-        return stringBuilder;
-    }
-
-    public static void log(int[][] arr) {
-        StringBuilder stringBuilder = new StringBuilder("primitives matrix: {\r\n");
-        for (int[] item : arr) {
-            stringBuilder.append("{");
-            stringBuilder = arrToString(item, stringBuilder);
-            stringBuilder.append("}\r\n");
-        }
-        stringBuilder.append("}");
-        print(stringBuilder.toString());
-    }
-
-
-    private static void print(Object message, String type) {
-        System.out.println(type + ": " + message);
-    }
-
-    private static void print(Object message) {
-        System.out.println(message);
+    public static void log(int[][] arr){
+        matrixHandler.perform(arr);
     }
 
     public static void flushInt() {
-        print(buffer, "primitive");
-        buffer = 0;
+        integerHandler.flush();
     }
 
-    public static void flushStr() {
-        print(fullStr);
-        fullStr = "";
-        lastStr = "";
-        buffer = 0;
+    public static void flushStr(){
+        stringHandler.flush();
     }
+
 }
-
