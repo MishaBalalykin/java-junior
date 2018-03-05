@@ -12,14 +12,14 @@ import com.acme.edu.printer.ConsolePrinter;
  * @see
  */
 public class Logger {
-    private static IntegerHandler integerHandler= new IntegerHandler(new ConsolePrinter(), new Design("primitive: "));
-    private static StringHandler stringHandler= new StringHandler(new ConsolePrinter(), new Design("string: "));
-    private static ByteHandler byteHandler = new ByteHandler(new ConsolePrinter(), new Design("primitive: "));
-    private static CharHandler charHandler = new CharHandler(new ConsolePrinter(), new Design("char: "));
-    private static BooleanHandler booleanHandler = new BooleanHandler(new ConsolePrinter(), new Design("primitive: "));
-    private static ObjectHandler objectHandler = new ObjectHandler(new ConsolePrinter(), new Design("reference: "));
-    private static ArrayHandler arrayHandler = new ArrayHandler(new ConsolePrinter(), new Design("primitives array: {"));
-    private static MatrixHandler matrixHandler = new MatrixHandler(new ConsolePrinter(), new Design("primitives matrix: {"));
+    private static Handler integerHandler= new IntegerHandler(new ConsolePrinter(), new Design("primitive: "));
+    private static Handler stringHandler= new StringHandler(new ConsolePrinter(), new Design("string: "));
+    private static Handler byteHandler = new ByteHandler(new ConsolePrinter(), new Design("primitive: "));
+    private static Handler charHandler = new CharHandler(new ConsolePrinter(), new Design("char: "));
+    private static Handler booleanHandler = new BooleanHandler(new ConsolePrinter(), new Design("primitive: "));
+    private static Handler objectHandler = new ObjectHandler(new ConsolePrinter(), new Design("reference: "));
+    private static Handler arrayHandler = new ArrayHandler(new ConsolePrinter(), new Design("primitives array: {"));
+    private static Handler matrixHandler = new MatrixHandler(new ConsolePrinter(), new Design("primitives matrix: {"));
 
     public static void log(int message) {
         //region output
