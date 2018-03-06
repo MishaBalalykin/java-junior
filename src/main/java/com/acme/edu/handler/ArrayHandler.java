@@ -4,14 +4,19 @@ import com.acme.edu.disign.Design;
 import com.acme.edu.printer.Printer;
 
 public class ArrayHandler implements Handler {
-    public ArrayHandler(Printer printer, Design design) {
+    private int[] arrayMessage;
+    private Printer printer;
 
+    public ArrayHandler(int[] message, Printer printer) {
+        arrayMessage = message;
+        this.printer = printer;
     }
 
     @Override
-    public void perform(Object message) {
-        StringBuilder stringBuilder = new StringBuilder(design.getType());
-        stringBuilder = arrToString((int[])message, stringBuilder);
+    public void handle() {
+        StringBuilder stringBuilder = new StringBuilder("primitives array: {");
+        //stringBuilder.append("{");
+        stringBuilder = arrToString(arrayMessage, stringBuilder);
         stringBuilder.append("}");
         printer.print(stringBuilder.toString());
     }
@@ -19,6 +24,16 @@ public class ArrayHandler implements Handler {
     @Override
     public void flush() {
 
+    }
+
+    @Override
+    public void setBuffer(String buffer) {
+
+    }
+
+    @Override
+    public String getBuffer() {
+        return null;
     }
 
     private StringBuilder arrToString(int[] arr, StringBuilder stringBuilder){
@@ -29,7 +44,4 @@ public class ArrayHandler implements Handler {
         return  stringBuilder;
     }
 
-    /*private void print(Object message) {
-        System.out.println(message);
-    }*/
 }

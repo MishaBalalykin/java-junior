@@ -5,17 +5,19 @@ import com.acme.edu.printer.Printer;
 
 public class StringHandler implements Handler {
     private String stringMessage;
+    private Printer printer;
     private String lastStr = "";
     private String fullStr = "";
     private int buffer;
 
-    public StringHandler(String message) {
+    public StringHandler(String message, Printer printer) {
         stringMessage = message;
+        this.printer = printer;
     }
 
 
     @Override
-    public void perform() {
+    public void handle() {
         buildStr(stringMessage);
     }
 
@@ -49,9 +51,22 @@ public class StringHandler implements Handler {
     public void flush() {
         indexingStr();
         deleteLastSymStr();
-        printer.print(design.getType()+fullStr);
+        printer.print("string: "+fullStr);
         fullStr = "";
         lastStr = "";
+    }
+
+    @Override
+    public void setBuffer(String buffer) {
+        String[] masBuffer = buffer.split(":");
+        lastStr = masBuffer[0];
+        fullStr = masBuffer[1];
+        this.buffer = Integer.parseInt(masBuffer[2]);
+    }
+
+    @Override
+    public String getBuffer() {
+        return lastStr+":"+fullStr+":"+buffer;
     }
 
 

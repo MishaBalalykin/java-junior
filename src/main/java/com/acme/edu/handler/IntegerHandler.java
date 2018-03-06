@@ -4,8 +4,6 @@ import com.acme.edu.disign.Design;
 import com.acme.edu.printer.Printer;
 
 public class IntegerHandler implements Handler {
-
-
     private int buffer;
     private int intMessage;
 
@@ -20,6 +18,7 @@ public class IntegerHandler implements Handler {
     private void summer(int intMessage) {
         if(!checkOwerflow(intMessage)){
             buffer += intMessage;
+
         }
     }
 
@@ -35,14 +34,24 @@ public class IntegerHandler implements Handler {
     }
 
     @Override
-    public void perform() {
+    public void handle() {
         summer(intMessage);
     }
 
     @Override
     public void flush() {
-        printer.print(/*design.getType()*/""+buffer);
+        printer.print(/*design.getType()*/"primitive: "+buffer);
         buffer = 0;
+    }
+
+    @Override
+    public void setBuffer(String buffer) {
+        this.buffer = Integer.parseInt(buffer);
+    }
+
+    @Override
+    public String getBuffer() {
+        return ""+buffer;
     }
 
 }

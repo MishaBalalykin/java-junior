@@ -1,8 +1,5 @@
 package com.acme.edu.handler;
 
-import com.acme.edu.disign.Design;
-import com.acme.edu.disign.DesignInteger;
-import com.acme.edu.printer.Printer;
 
 /**
  * @author MishaAndEugen
@@ -10,6 +7,8 @@ import com.acme.edu.printer.Printer;
  */
 public interface Handler {
 
-    void perform();
+    void handle();
     void flush();
+    void setBuffer(String buffer);
+    String getBuffer();
 }

@@ -4,22 +4,31 @@ import com.acme.edu.disign.Design;
 import com.acme.edu.printer.Printer;
 
 public class CharHandler implements Handler {
-    boolean flag = true;
-    public CharHandler(Printer printer, Design design) {
+    private char charMessage;
+    private Printer printer;
 
+    public CharHandler(char message, Printer printer) {
+        charMessage = message;
+        this.printer = printer;
     }
 
     @Override
-    public void perform(Object message) {
-        if (flag){
-            flush();
-            flag = false;
-        }
-        printer.print(message.toString());
+    public void handle() {
+        flush();
     }
 
     @Override
     public void flush() {
-        System.out.println(design.getType());
+        printer.print("char: "+charMessage);
+    }
+
+    @Override
+    public void setBuffer(String buffer) {
+
+    }
+
+    @Override
+    public String getBuffer() {
+        return null;
     }
 }
