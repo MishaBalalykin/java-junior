@@ -1,39 +1,34 @@
-package com.acme.edu.handler;
+package com.acme.edu.commander;
 
-import com.acme.edu.disign.Design;
+import com.acme.edu.formatter.FormatVisitor;
 import com.acme.edu.printer.Printer;
 
-public class ArrayHandler implements Handler {
+public class ArrayCommand implements Command {
     private int[] arrayMessage;
     private Printer printer;
 
-    public ArrayHandler(int[] message, Printer printer) {
+    public ArrayCommand(int[] message) {
         arrayMessage = message;
-        this.printer = printer;
     }
 
     @Override
-    public void handle() {
+    public Command handle(Command command) {
         StringBuilder stringBuilder = new StringBuilder("primitives array: {");
         //stringBuilder.append("{");
         stringBuilder = arrToString(arrayMessage, stringBuilder);
         stringBuilder.append("}");
-        printer.print(stringBuilder.toString());
+        //printer.print(stringBuilder.toString());
+        return this;
+    }
+
+    @Override
+    public void accept(FormatVisitor formatVisitor) {
+
     }
 
     @Override
     public void flush() {
 
-    }
-
-    @Override
-    public void setBuffer(String buffer) {
-
-    }
-
-    @Override
-    public String getBuffer() {
-        return null;
     }
 
     private StringBuilder arrToString(int[] arr, StringBuilder stringBuilder){

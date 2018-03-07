@@ -1,17 +1,16 @@
-package com.acme.edu.handler;
+package com.acme.edu.commander;
 
-import com.acme.edu.disign.Design;
+import com.acme.edu.formatter.FormatVisitor;
 import com.acme.edu.printer.Printer;
 
-public class ByteHandler implements Handler {
+public class ByteCommand implements Command {
     private byte byteMessage;
     private byte buffer;
 
     private Printer printer;
 
-    public ByteHandler(byte byteMessage, Printer printer) {
+    public ByteCommand(byte byteMessage) {
         this.byteMessage = byteMessage;
-        this.printer = printer;
     }
 
     private void summer(byte byteMessage) {
@@ -31,24 +30,27 @@ public class ByteHandler implements Handler {
         return false;
     }
 
+    public byte getByteMessage(){
+        return byteMessage;
+    }
+
     @Override
-    public void handle() {
+    public Command handle(Command command) {
+        if(command instanceof ByteCommand){
+            byteMessage = ((ByteCommand)command).getByteMessage();
+        }
         summer(byteMessage);
+        return this;
+    }
+
+    @Override
+    public void accept(FormatVisitor formatVisitor) {
+
     }
 
     @Override
     public void flush() {
-        printer.print("primitive: "+buffer);
+        //printer.print("primitive: "+buffer);
         buffer = 0;
-    }
-
-    @Override
-    public void setBuffer(String buffer) {
-        this.buffer = Byte.parseByte(buffer);
-    }
-
-    @Override
-    public String getBuffer() {
-        return ""+buffer;
     }
 }

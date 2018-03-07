@@ -1,24 +1,27 @@
-package com.acme.edu.handler;
+package com.acme.edu.commander;
 
-import com.acme.edu.disign.Design;
+import com.acme.edu.formatter.FormatVisitor;
 import com.acme.edu.printer.Printer;
 
-public class StringHandler implements Handler {
+public class StringCommand implements Command {
     private String stringMessage;
     private Printer printer;
     private String lastStr = "";
     private String fullStr = "";
     private int buffer;
 
-    public StringHandler(String message, Printer printer) {
+    public StringCommand(String message) {
         stringMessage = message;
-        this.printer = printer;
     }
 
 
     @Override
-    public void handle() {
+    public Command handle(Command command) {
+        if(command instanceof StringCommand){
+            stringMessage = ((StringCommand)command).getStringMessage();
+        }
         buildStr(stringMessage);
+        return this;
     }
 
     private void buildStr(String stringMessage){
@@ -47,27 +50,21 @@ public class StringHandler implements Handler {
         }
     }
 
+    public String getStringMessage(){
+        return stringMessage;
+    }
+
+    @Override
+    public void accept(FormatVisitor formatVisitor) {
+
+    }
+
     @Override
     public void flush() {
         indexingStr();
         deleteLastSymStr();
-        printer.print("string: "+fullStr);
         fullStr = "";
         lastStr = "";
     }
-
-    @Override
-    public void setBuffer(String buffer) {
-        String[] masBuffer = buffer.split(":");
-        lastStr = masBuffer[0];
-        fullStr = masBuffer[1];
-        this.buffer = Integer.parseInt(masBuffer[2]);
-    }
-
-    @Override
-    public String getBuffer() {
-        return lastStr+":"+fullStr+":"+buffer;
-    }
-
 
 }

@@ -1,18 +1,18 @@
-package com.acme.edu.handler;
+package com.acme.edu.commander;
 
+import com.acme.edu.formatter.FormatVisitor;
 import com.acme.edu.printer.Printer;
 
-public class MatrixHandler implements Handler {
+public class MatrixCommand implements Command {
     private int[][] matrixMessage;
     private Printer printer;
 
-    public MatrixHandler(int[][] message, Printer printer) {
+    public MatrixCommand(int[][] message) {
         matrixMessage = message;
-        this.printer = printer;
     }
 
     @Override
-    public void handle() {
+    public Command handle(Command command) {
         StringBuilder stringBuilder = new StringBuilder("primitives matrix: {"+"\r\n");
         for (int[] item : matrixMessage){
             stringBuilder.append("{");
@@ -20,22 +20,18 @@ public class MatrixHandler implements Handler {
             stringBuilder.append("}\r\n");
         }
         stringBuilder.append("}");
-        printer.print(stringBuilder.toString());
+        //printer.print(stringBuilder.toString());
+        return this;
+    }
+
+    @Override
+    public void accept(FormatVisitor formatVisitor) {
+
     }
 
     @Override
     public void flush() {
 
-    }
-
-    @Override
-    public void setBuffer(String buffer) {
-
-    }
-
-    @Override
-    public String getBuffer() {
-        return null;
     }
 
     private StringBuilder arrToString(int[] arr, StringBuilder stringBuilder){
