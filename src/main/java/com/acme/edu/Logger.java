@@ -78,13 +78,16 @@ public class Logger {
         Logger.flush();
         Logger.log(-1);
         Logger.flush();
+        Logger.flush();
+        Logger.flush();
+        Logger.flush();
 
-        Logger.log("str 1");
+        /*Logger.log("str 1");
         Logger.log(1);
         Logger.log(2);
         Logger.log("str 2");
         Logger.log(0);
-        Logger.flush();
+        Logger.flush();*/
     }
 
 }

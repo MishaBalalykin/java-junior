@@ -1,12 +1,12 @@
 package com.acme.edu.commander;
 
 import com.acme.edu.formatter.FormatVisitor;
-import com.acme.edu.printer.Printer;
 
 public class IntegerCommand implements Command {
     private int buffer;
     private int intMessage;
     private String forPrint;
+    private boolean isFlush;
 
     public IntegerCommand(int message) {
         intMessage = message;
@@ -16,7 +16,7 @@ public class IntegerCommand implements Command {
     private void accumulator(int intMessage) {
         if(!checkOwerflow(intMessage)){
             buffer += intMessage;
-
+            isFlush = true;
         }
     }
 
@@ -56,11 +56,17 @@ public class IntegerCommand implements Command {
     }
 
     public int getBuffer(){
+        isFlush = false;
         return buffer;
     }
 
     public String toString(){
         return forPrint;
+    }
+
+    @Override
+    public boolean isFlush() {
+        return isFlush;
     }
 
 }

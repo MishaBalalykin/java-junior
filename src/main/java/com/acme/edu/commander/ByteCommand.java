@@ -53,4 +53,9 @@ public class ByteCommand implements Command {
         //printer.print("primitive: "+buffer);
         buffer = 0;
     }
+
+    @Override
+    public boolean isFlush() {
+        return false;
+    }
 }

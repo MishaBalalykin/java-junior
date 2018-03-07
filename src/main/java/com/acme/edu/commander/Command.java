@@ -10,4 +10,5 @@ public interface Command {
     void accept(FormatVisitor formatVisitor);
     void flush();
     String toString();
+    boolean isFlush();
 }

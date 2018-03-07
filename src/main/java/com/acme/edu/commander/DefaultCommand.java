@@ -17,4 +17,9 @@ public class DefaultCommand implements Command {
     public void flush() {
 
     }
+
+    @Override
+    public boolean isFlush() {
+        return false;
+    }
 }

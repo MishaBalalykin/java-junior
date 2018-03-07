@@ -67,4 +67,9 @@ public class StringCommand implements Command {
         lastStr = "";
     }
 
+    @Override
+    public boolean isFlush() {
+        return false;
+    }
+
 }

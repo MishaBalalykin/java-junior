@@ -27,4 +27,9 @@ public class ObjectCommand implements Command {
         //printer.print("reference: "+objectMessage);
     }
 
+    @Override
+    public boolean isFlush() {
+        return false;
+    }
+
 }

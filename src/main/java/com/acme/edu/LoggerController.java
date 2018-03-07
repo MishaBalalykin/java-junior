@@ -28,8 +28,10 @@ public class LoggerController {
 
 
     public void flush(){
-        save();
-        currentCommand.flush();
+        if(currentCommand.isFlush()){
+            save();
+            currentCommand.flush();
+        }
     }
 
     public void save(){

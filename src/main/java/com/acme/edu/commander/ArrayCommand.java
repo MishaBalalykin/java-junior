@@ -31,6 +31,11 @@ public class ArrayCommand implements Command {
 
     }
 
+    @Override
+    public boolean isFlush() {
+        return false;
+    }
+
     private StringBuilder arrToString(int[] arr, StringBuilder stringBuilder){
         for (int item : arr){
             stringBuilder.append(item+", ");

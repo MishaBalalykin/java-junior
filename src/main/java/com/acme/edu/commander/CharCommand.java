@@ -26,4 +26,9 @@ public class CharCommand implements Command {
         //printer.print("char: "+charMessage);
     }
 
+    @Override
+    public boolean isFlush() {
+        return false;
+    }
+
 }

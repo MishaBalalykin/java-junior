@@ -26,4 +26,9 @@ public class BooleanCommand implements Command {
     public void flush() {
         //printer.print("primitive: "+booleanMessage);
     }
+
+    @Override
+    public boolean isFlush() {
+        return false;
+    }
 }
