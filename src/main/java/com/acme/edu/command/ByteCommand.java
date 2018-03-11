@@ -19,7 +19,7 @@ public class ByteCommand implements Command {
 
     @Override
     public void accept(Saver saver) {
-        saver.saveByte(decoratedMessage);
+        saver.save(decoratedMessage);
     }
 
     @Override

@@ -19,7 +19,7 @@ public class ArrayCommand implements Command {
 
     @Override
     public void accept(Saver saver) {
-        saver.saveArray(decoratedMessage);
+        saver.save(decoratedMessage);
     }
 
     @Override

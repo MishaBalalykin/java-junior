@@ -19,11 +19,11 @@ public class StringCommand implements Command {
 
     @Override
     public void accept(Saver saver) {
-        saver.saveString(decoratedMessage);
+        saver.save(decoratedMessage);
     }
 
     @Override
     public void accept(Accumulator accumulator) {
-        accumulator.accumulateString();
+        accumulator.accumulateString(message);
     }
 }

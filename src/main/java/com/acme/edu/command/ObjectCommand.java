@@ -19,7 +19,7 @@ public class ObjectCommand implements Command {
 
     @Override
     public void accept(Saver saver) {
-        saver.saveObject(decoratedMessage);
+        saver.save(decoratedMessage);
     }
 
     @Override

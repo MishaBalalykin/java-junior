@@ -19,7 +19,7 @@ public class BooleanCommand implements Command {
 
     @Override
     public void accept(Saver saver) {
-        saver.saveBoolean(decoratedMessage);
+        saver.save(decoratedMessage);
     }
 
     @Override

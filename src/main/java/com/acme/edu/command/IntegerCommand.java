@@ -19,7 +19,7 @@ public class IntegerCommand implements Command {
 
     @Override
     public void accept(Saver saver) {
-        saver.saveInt(decoratedMessage);
+        saver.save(decoratedMessage);
     }
 
     @Override

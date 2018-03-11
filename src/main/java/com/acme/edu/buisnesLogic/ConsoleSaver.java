@@ -3,52 +3,32 @@ package com.acme.edu.buisnesLogic;
 import com.acme.edu.command.Command;
 
 public class ConsoleSaver implements Saver {
+    /**
+     * method for start accept method for current command
+     *
+     * @param command
+     */
     @Override
     public void visit(Command command) {
         command.accept(this);
     }
 
+    /**
+     * method for consolSave
+     *
+     * @param decoratedMessage
+     */
     @Override
-    public void saveInt(String decoratedMessage) {
+    public void save(String decoratedMessage) {
         System.out.println(decoratedMessage);
     }
 
-    @Override
-    public void saveString(String decoratedMessage) {
-        System.out.println(decoratedMessage);
-    }
-
-    @Override
-    public void saveByte(String decoratedMessage) {
-        System.out.println(decoratedMessage);
-    }
-
-    @Override
-    public void saveChar(String decoratedMessage) {
-        System.out.println(decoratedMessage);
-    }
-
-    @Override
-    public void saveBoolean(String decoratedMessage) {
-        System.out.println(decoratedMessage);
-    }
-
-    @Override
-    public void saveObject(String decoratedMessage) {
-        System.out.println(decoratedMessage);
-    }
-
-    @Override
-    public void saveArray(String decoratedMessage) {
-        System.out.println(decoratedMessage);
-    }
-
-    @Override
-    public void saveMatrix(String decoratedMessage) {
-        System.out.println(decoratedMessage);
-    }
-
-    public void saveOverflow(int overFlow){
+    /**
+     * method for save overflow
+     *
+     * @param overFlow
+     */
+    public void saveOverflow(int overFlow) {
         System.out.println(overFlow);
     }
 }

@@ -19,7 +19,7 @@ public class CharCommand implements Command {
 
     @Override
     public void accept(Saver saver) {
-        saver.saveChar(decoratedMessage);
+        saver.save(decoratedMessage);
     }
 
     @Override

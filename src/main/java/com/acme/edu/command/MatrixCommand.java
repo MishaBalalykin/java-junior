@@ -19,7 +19,7 @@ public class MatrixCommand implements Command {
 
     @Override
     public void accept(Saver saver) {
-        saver.saveMatrix(decoratedMessage);
+        saver.save(decoratedMessage);
     }
 
     @Override
