@@ -1,16 +1,7 @@
 package com.acme.edu;
 
-//kdjghdfkgjhdfkgjhdfkgj
-/*
-gkjfhkgjfhg
-лоралопралопр
-лпораплорапл
- */
-
-
-//import com.acme.edu.Controller.Controller;
-import com.acme.edu.Controller.Printer.PrimitivePrinter;
-import com.acme.edu.Controller.Printer.Printer;
+import com.acme.edu.buisnesLogic.*;
+import com.acme.edu.command.*;
 
 /**
  * Logs messages.
@@ -20,130 +11,64 @@ import com.acme.edu.Controller.Printer.Printer;
  * @see
  */
 public class Logger {
-
-    public static int buffer = 0;
-
-    private static String fullStr = "";
-    private static String lastStr = "";
+    private static Accumulator accumulator = new Summator();
 
     public static void log(int message) {
         //region output
-        //flushStr();
-        //buffer = checkOwerflowSum(message);
-        new PrimitivePrinter().print(message);
+        new Controller(new IntegerCommand(message)).execute(new PrefixDecorator(), new ConsoleSaver(), accumulator);
         //endregion
-    }
-
-    private static int checkOwerflowSum(int message) {
-        int sum = message + buffer;
-        if ((sum < message || sum < buffer) && sum != message && sum != buffer) {
-            print(buffer);
-        } else {
-            return sum;
-        }
-        return Integer.MAX_VALUE;
     }
 
     public static void log(byte message) {
         //region output
-        //print(message,"primitive");
-        new PrimitivePrinter().print(message);
-        //print(message);
+        new Controller(new ByteCommand(message)).execute(new PrefixDecorator(), new ConsoleSaver(), accumulator);
         //endregion
     }
 
     public static void log(char message) {
         //region output
-
-        //print(message, "char");
-        //print(message);
+        new Controller(new CharCommand(message)).execute(new PrefixDecorator(), new ConsoleSaver(),accumulator);
         //endregion
     }
 
     public static void log(String message) {
         //region output
-        flushInt();
-        aaa(message);
+        new Controller(new StringCommand(message)).execute(new PrefixDecorator(), new ConsoleSaver(),accumulator);
         //endregion
-    }
-
-    private static void aaa(String message) {
-        if (message.equals(lastStr)) {
-            buffer++;
-        } else {
-            fullStr = bbb(buffer + 1);
-            fullStr += message + "\r\n";
-        }
-        lastStr = message;
-    }
-
-    private static String bbb(int buffer) {
-        StringBuilder stringBuilder = new StringBuilder();
-        if (buffer > 1) {
-            stringBuilder.append("(x").append(buffer).append(")");
-        }
-        return stringBuilder.toString();
     }
 
     public static void log(boolean message) {
         //region output
-        //print(message, "primitive");
-        new PrimitivePrinter().print(message);
+        new Controller(new BooleanCommand(message)).execute(new PrefixDecorator(), new ConsoleSaver(),accumulator);
         //endregion
     }
 
     public static void log(Object message) {
         //region output
-        print(message, "reference");
-        //print(message);
+        new Controller(new ObjectCommand(message)).execute(new PrefixDecorator(), new ConsoleSaver(),accumulator);
         //endregion
     }
 
     public static void log(int[] arr) {
-        StringBuilder stringBuilder = new StringBuilder("primitives array: {");
-        stringBuilder = arrToString(arr, stringBuilder);
-        stringBuilder.append("}");
-        print(stringBuilder.toString());
-    }
-
-    private static StringBuilder arrToString(int[] arr, StringBuilder stringBuilder) {
-        for (int item : arr) {
-            stringBuilder.append(item + ", ");
-        }
-        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
-        return stringBuilder;
+        //region output
+        new Controller(new ArrayCommand(arr)).execute(new PrefixDecorator(), new ConsoleSaver(),accumulator);
+        //endregion
     }
 
     public static void log(int[][] arr) {
-        StringBuilder stringBuilder = new StringBuilder("primitives matrix: {\r\n");
-        for (int[] item : arr) {
-            stringBuilder.append("{");
-            stringBuilder = arrToString(item, stringBuilder);
-            stringBuilder.append("}\r\n");
-        }
-        stringBuilder.append("}");
-        print(stringBuilder.toString());
+        //region output
+        new Controller(new MatrixCommand(arr)).execute(new PrefixDecorator(), new ConsoleSaver(),accumulator);
+        //endregion
     }
 
-
-    private static void print(Object message, String type) {
-        System.out.println(type + ": " + message);
-    }
-
-    private static void print(Object message) {
-        System.out.println(message);
-    }
-
-    public static void flushInt() {
-        print(buffer, "primitive");
-        buffer = 0;
-    }
-
-    public static void flushStr() {
-        print(fullStr);
-        fullStr = "";
-        lastStr = "";
-        buffer = 0;
+    public static void flush(){
+        //region set(0)
+        accumulator.setIntBuffer(0);
+        accumulator.setStringBuffer(0);
+        accumulator.setByteBuffer((byte) 0);
+        //endregion
     }
 }
+
+
 
