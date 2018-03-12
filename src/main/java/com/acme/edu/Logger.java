@@ -3,6 +3,7 @@ package com.acme.edu;
 import com.acme.edu.buisnesLogic.*;
 import com.acme.edu.command.*;
 
+
 /**
  * Logs messages.
  *
@@ -32,7 +33,7 @@ public class Logger {
     public static void log(byte message) {
         //region output
         new Controller(new ByteCommand(message)).execute(new PrefixDecorator(), new ConsoleSaver(), accumulator);
-        //endregion
+
     }
 
     /**
@@ -67,6 +68,7 @@ public class Logger {
         new Controller(new BooleanCommand(message)).execute(new PrefixDecorator(), new ConsoleSaver(), accumulator);
         //endregion
     }
+
 
     /**
      * @param message
@@ -112,7 +114,6 @@ public class Logger {
         accumulator.setByteBuffer((byte) 0);
         //endregion
     }
+
+
 }
-
-
-

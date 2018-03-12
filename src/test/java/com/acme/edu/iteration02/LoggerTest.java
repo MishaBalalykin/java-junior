@@ -25,8 +25,6 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
 
 
-    //TODO: implement Logger solution to match specification as tests
-
     @Test
     public void shouldLogSequentIntegersAsSum() throws IOException {
         //region when
@@ -35,7 +33,9 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log(2);
         Logger.log("str 2");
         Logger.log(0);
+        Logger.flush();
         //endregion
+
 
         //region then
         assertSysoutContains("string: ");
@@ -124,17 +124,29 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
 
         //region then
+        //endregion
+
+        //region then
+        assertSysoutContains("primitive: ");
         assertSysoutContains("str 1");
         assertSysoutContains("str 2 (x2)");
         assertSysoutContains("0");
         assertSysoutContains("str 2");
         assertSysoutContains("str 3 (x3)");
         /*assertSysoutEquals(
+<<<<<<< HEAD
             "str 1\r\n" +
             "str 2 (x2)\r\n" +
             "0\r\n" +
             "str 2\r\n" +
             "str 3 (x3)\r\n"
+=======
+                "str 1\r\n" +
+                        "str 2 (x2)\r\n" +
+                        "0\r\n" +
+                        "str 2\r\n" +
+                        "str 3 (x3)\r\n"
+>>>>>>> 2018-02-jet
         );*/
         //endregion
     }
